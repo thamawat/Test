@@ -4,22 +4,32 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinCamera
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
+            try
+            {
+                string externalIP = new WebClient().DownloadString("http://ipv4bot.whatismyipaddress.com");
+                ip_txb.Text = externalIP;
+            }
+            catch (Exception ex)
+            {
 
+            }
+            
         }
     }
 }
